@@ -28,5 +28,57 @@ function fizzBuzz(num) {
 	}
 }
 
+/**
+ * [harmlessRansomNote description]
+ * Note: Avoid exponential runtime {O(n^2)}
+ * @param  {[type]} note     [description]
+ * @param  {[type]} magazine [description]
+ * @return {[type]}          [description]
+ */
+function harmlessRansomNote(note, magazine) {
+	// take {note} as an array
+	var noteArr = note.split(' ');
+
+	// take {magazine} as an array
+	var magazineArr = magazine.split(' ');
+
+	// Holds magazine hash table
+	var magazineObj = {};
+
+	// Note is enough from the magazine
+	var noteIsPossible = true;
+
+	magazineArr.forEach(function (magazineWord) {
+
+		// word|key is note yet set ti the hash table
+		if (! magazineObj[magazineWord]) {
+			magazineObj[magazineWord] = 0;
+		}
+
+		magazineObj[magazineWord]++;
+	});
+
+	noteArr.forEach(function (word) {
+
+		if (magazineObj[word]) {
+			
+			magazineObj[word]--;
+
+			// magazine word is not enough
+			if (magazineObj[word] < 0)	{
+				noteIsPossible = false;
+			}
+
+		} else {
+			noteIsPossible = false;
+		}
+	});
+
+	return noteIsPossible;
+} 
+
 // Fizzbuzz
-fizzBuzz(1, 20);
+// fizzBuzz(1, 20);
+
+// Ransom note
+console.log(harmlessRansomNote('this is the text', 'this is the text of the note'));
