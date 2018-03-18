@@ -77,8 +77,30 @@ function harmlessRansomNote(note, magazine) {
 	return noteIsPossible;
 } 
 
+function isPalindrome(sentence) {
+
+	var allowedCharacter = 'abcdefghijklmnopqrstuvwxyz';
+
+	// Set sentence to lowercase to avoid any issue for comparing characters
+	var sentenceArr = sentence.toLowerCase().split('');
+
+	// Holds the allowed characters
+	var lettersArr = [];
+
+	sentenceArr.forEach(function (char) {
+		// Check if char is allowed
+		if (allowedCharacter.indexOf(char) > -1) {
+			lettersArr.push(char);
+		}
+	});
+
+	// Take the letters and join === take the letters reverce and join
+	return lettersArr.join() === lettersArr.reverse().join();
+} 
+
 // Fizzbuzz
 // fizzBuzz(1, 20);
 
 // Ransom note
-console.log(harmlessRansomNote('this is the text', 'this is the text of the note'));
+// console.log(harmlessRansomNote('this is the text', 'this is the text of the note'));
+console.log('isPalindrome', isPalindrome('Madam I\'m Adam'));
