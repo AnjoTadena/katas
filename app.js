@@ -98,9 +98,54 @@ function isPalindrome(sentence) {
 	return lettersArr.join() === lettersArr.reverse().join();
 } 
 
+function caesarCipher(str, num) {
+
+	var strLowerString = str.toLowerCase();
+
+	var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+
+	var newString = '';
+	
+	num %= alphabet.length; 
+
+	for (var i = 0; i < strLowerString.length; i++) {
+
+		var currentChar = strLowerString[i];
+
+		if (currentChar === ' ') { // Character is a space
+
+			newString += currentChar;
+
+			continue;
+		}
+
+		// Get currenct character position from alphabet array
+		var currentIndex = alphabet.indexOf(currentChar);
+
+		var newIndex = currentIndex + num; //
+
+		if (newIndex > (alphabet.length - 1)) {
+			newIndex -= alphabet.length;
+		}
+
+		if (newIndex < 0) {
+			newIndex = alphabet.length + newIndex;
+		}
+
+		if (str[i] === str[i].toUpperCase()) {
+			newString += alphabet[newIndex].toUpperCase();
+		} else {
+			newString += alphabet[newIndex];
+		}
+	}
+
+	return newString;
+}
+
 // Fizzbuzz
-// fizzBuzz(1, 20);
+//fizzBuzz(1, 20);
 
 // Ransom note
-// console.log(harmlessRansomNote('this is the text', 'this is the text of the note'));
+console.log('harmlessRansomNote', harmlessRansomNote('this is the text', 'this is the text of the note'));
 console.log('isPalindrome', isPalindrome('Madam I\'m Adam'));
+console.log(caesarCipher('Anjo Arinto Tadena', 233));
