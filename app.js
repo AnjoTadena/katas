@@ -142,6 +142,56 @@ function caesarCipher(str, num) {
 	return newString;
 }
 
+// Simple approach
+function reverseWord(word) {
+	var wordArray = word.split(' ');
+	var wordReverse = '';
+	var wordLength = wordArray.length - 1;
+
+	for (var i = 0; i < wordArray.length; i++) {
+		var word = '';
+
+		for (var j = wordArray[i].length - 1; j >= 0; j--) {
+			word += wordArray[i][j];
+		}
+
+		wordReverse += word;
+
+		if (i != wordLength) {
+			wordReverse	+= ' ';		
+		}
+	}
+
+	return wordReverse;
+}
+
+function anotherReverseWord(word) {
+	var wordsArray = word.split(' ');
+	var reverseWords = [];
+
+	wordsArray.forEach(function (word) {
+		var reverseWord = '';
+
+		for (var i = word.length - 1; i >= 0; i--) {
+			reverseWord += word[i];
+		}
+
+		reverseWords.push(reverseWord);
+	});
+
+	return reverseWords.join(' ');
+}
+
+var t0 = performance.now();
+reverseWord('anjo tadena');
+var t1 = performance.now();
+console.log("Call to reverseWord took " + (t1 - t0) + " milliseconds.")
+
+var t2 = performance.now();
+anotherReverseWord('anjo tadena');
+var t3 = performance.now();
+console.log("Call to anotherReverseWord took " + (t3 - t2) + " milliseconds.")
+
 // Fizzbuzz
 //fizzBuzz(1, 20);
 
